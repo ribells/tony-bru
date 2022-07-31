@@ -100,9 +100,8 @@
         var current_day = 1;
         var animation_status = false;
         var timeline_mode = false;
-
-
-
+		var bombing_counts = [0, 0, 0, 0] //Germany, UK, USA, Other
+		var stats_done = false;
 
         function highlightFeature(e) {
             highlightLayer = e.target;
@@ -255,6 +254,10 @@
         }
 
         function style_Axis_GermanyBombing_Normal() {
+			if(!stats_done) {
+				bombing_counts[0]++;
+			}
+
             return {
                 pane: 'pane_Axis_GermanyBombing_1944_1',
                 radius: 4.0,
@@ -428,6 +431,10 @@
         function style_Allied_Bombing_July_Normal(feature) {
             switch(String(feature.properties['COUNTRY_FLYING_MISSION'])) {
                 case 'GREAT BRITAIN':
+					if(!stats_done) {
+						bombing_counts[1]++;
+					}
+
                     return {
                 pane: 'pane_Allied_Bombing_JulySheet2_3',
                 radius: 4.0,
@@ -444,6 +451,10 @@
             }
                     break;
                 case 'USA':
+					if(!stats_done) {
+						bombing_counts[2]++;
+					}
+
                     return {
                 pane: 'pane_Allied_Bombing_JulySheet2_3',
                 radius: 4.0,
@@ -460,6 +471,9 @@
             }
                     break;
                 default:
+					if(!stats_done) {
+						bombing_counts[3]++;
+					}
                     return {
                 pane: 'pane_Allied_Bombing_JulySheet2_3',
                 radius: 4.0,
@@ -482,19 +496,36 @@
             switch(String(feature.properties['COUNTRY_FLYING_MISSION'])) {
                 case 'GREAT BRITAIN':
                     return {
-                pane: 'pane_Allied_Bombing_JulySheet2_3',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(72,216,94,1.0)',
-                interactive: true,
-            }
+						pane: 'pane_Allied_Bombing_JulySheet2_3',
+						radius: 4.0,
+						opacity: 1,
+						color: 'rgba(35,35,35,1.0)',
+						dashArray: '',
+						lineCap: 'butt',
+						lineJoin: 'miter',
+						weight: 1,
+						fill: true,
+						fillOpacity: 1,
+						fillColor: 'rgba(72,216,94,1.0)',
+						interactive: true,
+					}
+					break;
+				default:
+                    return {
+						pane: 'pane_Allied_Bombing_JulySheet2_3',
+						radius: 4.0,
+						opacity: .1,
+						color: 'rgba(35,35,35,0.1)',
+						dashArray: '',
+						lineCap: 'butt',
+						lineJoin: 'miter',
+						weight: 1,
+						fill: true,
+						fillOpacity: 0,
+						fillColor: 'rgba(200,200,200,0.1)',
+						interactive: true,
+					}
+					break;
         }
     }
 
@@ -727,7 +758,9 @@
         document.getElementById("4").onclick = function(){mode_switch()}
         document.getElementById("5").onclick = function(){UK()}
 
+        stats_done = true;
         
+        //alert(bombing_counts);
 
         </script>
     </body>

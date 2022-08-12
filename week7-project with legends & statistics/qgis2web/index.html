@@ -105,7 +105,7 @@
           ['OTHERS',bombing_counts[3]],
         ]);
 
-        var sum = bombing_counts[0] + bombing_counts[1] + bombing_counts[2] + bombing_counts[3] 
+        var sum = bombing_counts[0] + bombing_counts[1] + bombing_counts[2] + bombing_counts[3]
         var options = {
           title: 'Number of Total Missions: '+ sum
         };
@@ -498,108 +498,108 @@
                         bombing_counts[1]++;
                     }
                     if (dis_UK) {
-                    return {
-                pane: 'pane_Allied_Bombing_JulySheet2_3',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(72,216,94,1.0)',
-                interactive: true,
-            }
-        } else {
-            return {
-                        pane: 'pane_Allied_Bombing_JulySheet2_3',
-                        radius: 4.0,
-                        opacity: .1,
-                        color: 'rgba(35,35,35,0.1)',
-                        dashArray: '',
-                        lineCap: 'butt',
-                        lineJoin: 'miter',
-                        weight: 1,
-                        fill: true,
-                        fillOpacity: 0,
-                        fillColor: 'rgba(200,200,200,0.1)',
-                        interactive: true,
-                    }
-                }
+						return {
+								pane: 'pane_Allied_Bombing_JulySheet2_3',
+								radius: 4.0,
+								opacity: 1,
+								color: 'rgba(35,35,35,1.0)',
+								dashArray: '',
+								lineCap: 'butt',
+								lineJoin: 'miter',
+								weight: 1,
+								fill: true,
+								fillOpacity: 1,
+								fillColor: 'rgba(72,216,94,1.0)',
+								interactive: true,
+						}
+					} else {
+						return {
+							pane: 'pane_Allied_Bombing_JulySheet2_3',
+							radius: 4.0,
+							opacity: .1,
+							color: 'rgba(35,35,35,0.1)',
+							dashArray: '',
+							lineCap: 'butt',
+							lineJoin: 'miter',
+							weight: 1,
+							fill: true,
+							fillOpacity: 0,
+							fillColor: 'rgba(200,200,200,0.1)',
+							interactive: true,
+						}
+					}
                     break;
                 case 'USA':
                     if(!stats_done) {
                         bombing_counts[2]++;
                     }
                     if (dis_USA){
-                    return {
-                pane: 'pane_Allied_Bombing_JulySheet2_3',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(210,108,88,1.0)',
-                interactive: true,
-            }
-        } else{
-            return {
-                        pane: 'pane_Allied_Bombing_JulySheet2_3',
-                        radius: 4.0,
-                        opacity: .1,
-                        color: 'rgba(35,35,35,0.1)',
-                        dashArray: '',
-                        lineCap: 'butt',
-                        lineJoin: 'miter',
-                        weight: 1,
-                        fill: true,
-                        fillOpacity: 0,
-                        fillColor: 'rgba(200,200,200,0.1)',
-                        interactive: true,
-                    }
-                }
+						return {
+							pane: 'pane_Allied_Bombing_JulySheet2_3',
+							radius: 4.0,
+							opacity: 1,
+							color: 'rgba(35,35,35,1.0)',
+							dashArray: '',
+							lineCap: 'butt',
+							lineJoin: 'miter',
+							weight: 1,
+							fill: true,
+							fillOpacity: 1,
+							fillColor: 'rgba(210,108,88,1.0)',
+							interactive: true,
+						}
+					} else {
+						return {
+							pane: 'pane_Allied_Bombing_JulySheet2_3',
+							radius: 4.0,
+							opacity: .1,
+							color: 'rgba(35,35,35,0.1)',
+							dashArray: '',
+							lineCap: 'butt',
+							lineJoin: 'miter',
+							weight: 1,
+							fill: true,
+							fillOpacity: 0,
+							fillColor: 'rgba(200,200,200,0.1)',
+							interactive: true,
+						}
+					}
                     break;
                 default:
                     if(!stats_done) {
                         bombing_counts[3]++;
                     }
                     if (dis_OTHER){
-                    return {
-                pane: 'pane_Allied_Bombing_JulySheet2_3',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(124,101,239,1.0)',
-                interactive: true,
-            }
-        } else{
-            return {
-                        pane: 'pane_Allied_Bombing_JulySheet2_3',
-                        radius: 4.0,
-                        opacity: .1,
-                        color: 'rgba(35,35,35,0.1)',
-                        dashArray: '',
-                        lineCap: 'butt',
-                        lineJoin: 'miter',
-                        weight: 1,
-                        fill: true,
-                        fillOpacity: 0,
-                        fillColor: 'rgba(200,200,200,0.1)',
-                        interactive: true,
-                    }
-                }
+						return {
+							pane: 'pane_Allied_Bombing_JulySheet2_3',
+							radius: 4.0,
+							opacity: 1,
+							color: 'rgba(35,35,35,1.0)',
+							dashArray: '',
+							lineCap: 'butt',
+							lineJoin: 'miter',
+							weight: 1,
+							fill: true,
+							fillOpacity: 1,
+							fillColor: 'rgba(124,101,239,1.0)',
+							interactive: true,
+						}
+					} else{
+						return {
+							pane: 'pane_Allied_Bombing_JulySheet2_3',
+							radius: 4.0,
+							opacity: .1,
+							color: 'rgba(35,35,35,0.1)',
+							dashArray: '',
+							lineCap: 'butt',
+							lineJoin: 'miter',
+							weight: 1,
+							fill: true,
+							fillOpacity: 0,
+							fillColor: 'rgba(200,200,200,0.1)',
+							interactive: true,
+						}
+					}
                     break;
             }
         }
@@ -614,40 +614,40 @@
                     }
                     
                     return {
-                pane: 'pane_Allied_Bombing_JulySheet2_3',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(72,216,94,1.0)',
-                interactive: true,
-            }
+						pane: 'pane_Allied_Bombing_JulySheet2_3',
+						radius: 4.0,
+						opacity: 1,
+						color: 'rgba(35,35,35,1.0)',
+						dashArray: '',
+						lineCap: 'butt',
+						lineJoin: 'miter',
+						weight: 1,
+						fill: true,
+						fillOpacity: 1,
+						fillColor: 'rgba(72,216,94,1.0)',
+						interactive: true,
+					}
        
                     break;
                 case 'USA':
-                    if(!stats_done) {
-                        bombing_counts[2]++;
-                    }
-                   
-                    return {
-                pane: 'pane_Allied_Bombing_JulySheet2_3',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(210,108,88,1.0)',
-                interactive: true,
-            }
+					if(!stats_done) {
+						bombing_counts[2]++;
+					}
+			   
+					return {
+					pane: 'pane_Allied_Bombing_JulySheet2_3',
+					radius: 4.0,
+					opacity: 1,
+					color: 'rgba(35,35,35,1.0)',
+					dashArray: '',
+					lineCap: 'butt',
+					lineJoin: 'miter',
+					weight: 1,
+					fill: true,
+					fillOpacity: 1,
+					fillColor: 'rgba(210,108,88,1.0)',
+					interactive: true,
+				}
          
                     break;
                 default:
@@ -669,7 +669,6 @@
                 fillColor: 'rgba(124,101,239,1.0)',
                 interactive: true,
             }
-         
         }
                     break;
                 default:
@@ -732,7 +731,7 @@
             setTimeout(updateTime, 500);
         }
 
-        function mode_switch(){
+        function mode_switch() {
 
             timeline_mode = !timeline_mode;
             map.removeLayer(layer_Axis_GermanyBombing_1944_1);
@@ -793,7 +792,9 @@
             
             map.removeLayer(layer_Axis_GermanyBombing_1944_1);
             map.removeLayer(layer_Allied_Bombing_JulySheet2_3);
+            document.getElementById('piechart').innerHTML = "";
             bombing_counts = [10, 10, 10, 10];
+            stats_done = false;
 
             layer_Axis_GermanyBombing_1944_1 = new L.geoJson(json_Axis_GermanyBombing_1944_1, {
                 attribution: '',
@@ -830,11 +831,13 @@
             });
             bounds_group.addLayer(layer_Allied_Bombing_JulySheet2_3);
             map.addLayer(layer_Allied_Bombing_JulySheet2_3);
-            google.charts.load('current', {'packages':['corechart']});
-            google.charts.setOnLoadCallback(drawChart);
+            //google.charts.load('current', {'packages':['corechart']});
+            //google.charts.setOnLoadCallback(drawChart);
             if (animation_status == true){
                 setTimeout(updateTime, 500);
             }
+            
+            drawChart();
         }
         
         document.getElementById("1").onclick = function(){pause()}
@@ -869,15 +872,15 @@
 
         <div id="piechart" style="width: 900px; height: 500px;"></div>
         <style>
-        	#piechart {
+          #piechart {
               position: absolute;
-              top: 260px;
+              top: 300px;
               left: -20px;
               width: 240px;
               opacity: 0.8;
               z-index: 10;
-        	}
-            .main_check {
+          }
+          .main_check {
               background-color:lightblue;
               width: 150px;
               height: 50px;
@@ -886,7 +889,7 @@
               flex-wrap: wrap;
               align-content: center;
               align-items: left;
-			}
+	  }
         </style>
     </body>
 </html>

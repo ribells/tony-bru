@@ -66,13 +66,17 @@
         #map {
             width: 1617px;
             height: 895px;
+            z-index: 9;
         }
         </style>
     </head>
     
     <body>
+
         <div class="main_check">
-         
+        <div id="hud" style="position:absolute; top:50px; left:50px; font-size:56px; z-index:10; color:white">
+            
+        </div>
         <input type="checkbox" id="check1" onclick="Ger_only()">
         <label>Germany:</label> <br>
 
@@ -86,16 +90,99 @@
         <label>Others:</label> <br>
         </div>
 
-        <div id="hud" style="position:absolute; top:50px; left:50px; font-size:56px; z-index:2; color:white">
-            
-        </div>
+        
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawBarChart1);
+    function drawBarChart1() {
+        if (!timeline_mode){
+      var data = google.visualization.arrayToDataTable([
+        ["Country", "Daily_Tons", { role: "style" } ],
+        ["UK", 0, "#e36041"],
+        ["USA", 0, "#e1ad33"],
+        ["Others", 0, "#40aa48"]
+        ]);
+  } else{
+    var data = google.visualization.arrayToDataTable([
+        ["Country", "Daily_Tons", { role: "style" } ],
+        ["UK", total_tons[0][current_day-1], "#e36041"],
+        ["USA", total_tons[1][current_day-1], "#e1ad33"],
+        ["Others", total_tons[2][current_day-1], "#40aa48"]
+        ]);
+  }
+        
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "Daily Bombing Tons Distribution(Tons) in: " + current_date,
+        width: 600,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("barchart1"));
+      chart.draw(view, options);
+  }
+  </script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawBarChart2);
+    function drawBarChart2() {
+        if (!timeline_mode){
+      var data = google.visualization.arrayToDataTable([
+        ["Country", "Total_Tons", { role: "style" } ],
+        ["UK", getsum(total_tons[0]), "#e36041"],
+        ["USA", getsum(total_tons[1]), "#e1ad33"],
+        ["Others", getsum(total_tons[2]), "#40aa48"]
+        ]);
+  } else{
+    var data = google.visualization.arrayToDataTable([
+        ["Country", "Total_Tons", { role: "style" } ],
+        ["UK", cumulative_tons[0], "#e36041"],
+        ["USA", cumulative_tons[1], "#e1ad33"],
+        ["Others", cumulative_tons[2], "#40aa48"]
+        ]);
+  }
+        
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "Cumulative Bombing Tons Distribution(Tons) until: " + current_date,
+        width: 600,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("barchart2"));
+      chart.draw(view, options);
+  }
+  </script>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+      google.charts.setOnLoadCallback(drawPieChart);
 
-      function drawChart() {
+      function drawPieChart() {
 
         var data = google.visualization.arrayToDataTable([
           ['Country', 'Number of Missions'],
@@ -140,12 +227,19 @@
         var current_day = 1;
         var animation_status = false;
         var timeline_mode = false;
-        var bombing_counts = [0, 0, 0, 0] //Germany, UK, USA, Other
         var stats_done = false;
-        var dis_Ger = false;
-        var dis_UK = false;
-        var dis_USA = false;
-        var dis_OTHER = false;
+        var dis_Ger = true;
+        var dis_UK = true;
+        var dis_USA = true;
+        var dis_OTHER = true;
+        var bombing_counts = [0, 0, 0, 0]; //Germany, UK, USA, Others
+        var cumulative_tons = [0, 0, 0]; // UK, USA, Others
+        var total_tons = [[1369.8, 3137.5, 12, 5251, 2792.5, 2553, 5399, 207.75, 1018, 1569.5, 133, 2618.45, 184.25, 992.25, 2115, 1580, 86, 3610, 620.5, 5280, 160.6, 152, 4204.75, 3032.5, 3535, 866.25, 265, 4046, 654, 149.5, 2044], 
+                          [355, 786, 2245, 1579, 4256.7, 33, 986.14, 1287, 741.96, 474, 5292, 6473, 4220, 6574, 8754, 356, 891, 1460, 872, 794.56, 674, 5789, 3005.8, 768, 609, 879, 4589.32, 3709, 87, 906, 1259], 
+                          [1763, 890.9, 654.7, 899, 1133, 562.72, 877, 92, 4361, 932, 711.73, 822.8, 2279.6, 1468, 2477, 2742, 556.9, 1782, 620.7, 77, 281.1, 3562, 300.9, 920, 788, 2689, 863, 356, 772.6, 4667.9, 1145.14]] 
+                          //UK
+                          //USA
+                          //Others
 
         function highlightFeature(e) {
             highlightLayer = e.target;
@@ -375,6 +469,7 @@
             }
         }
 
+
  
         map.createPane('pane_Axis_GermanyBombing_1944_1');
         map.getPane('pane_Axis_GermanyBombing_1944_1').style.zIndex = 401;
@@ -400,6 +495,10 @@
         });
         bounds_group.addLayer(layer_Axis_GermanyBombing_1944_1);
         map.addLayer(layer_Axis_GermanyBombing_1944_1);
+
+
+
+
 
         function pop_Allied_Bombing_JulySheet2_3(feature, layer) {
             layer.on({
@@ -715,6 +814,14 @@
     
         bounds_group.addLayer(layer_Allied_Bombing_JulySheet2_3);
         map.addLayer(layer_Allied_Bombing_JulySheet2_3);
+
+        function getsum(input_array){
+            var sum = 0;
+            for (let i = 0; i < input_array.length; i++) {
+                sum += input_array[i];
+            }
+            return sum;
+        }
     
         function pause(){
             animation_status = !animation_status;
@@ -725,15 +832,15 @@
 
         function reset(){
             animation_status = false;
-            current_day = 0
+            current_day = 0;
             current_date = "7/0/1944";
             intl_date = "00/07/1944";
             setTimeout(updateTime, 500);
         }
 
         function mode_switch() {
-
-            timeline_mode = !timeline_mode;
+            cumulative_tons = [0,0,0];
+            timeline_mode = false;
             map.removeLayer(layer_Axis_GermanyBombing_1944_1);
             map.removeLayer(layer_Allied_Bombing_JulySheet2_3);
             layer_Axis_GermanyBombing_1944_1 = new L.geoJson(json_Axis_GermanyBombing_1944_1, {
@@ -771,12 +878,17 @@
             });
             bounds_group.addLayer(layer_Allied_Bombing_JulySheet2_3);
             map.addLayer(layer_Allied_Bombing_JulySheet2_3);
+
             google.charts.load('current', {'packages':['corechart']});
-            google.charts.setOnLoadCallback(drawChart);
+            google.charts.setOnLoadCallback(drawPieChart);
+            
+            drawBarChart1();
+            drawBarChart2();
 
 		}
         
         function updateTime() {
+            timeline_mode = true;
 
             //update the date
             if(current_day < 31) {
@@ -793,7 +905,13 @@
             map.removeLayer(layer_Axis_GermanyBombing_1944_1);
             map.removeLayer(layer_Allied_Bombing_JulySheet2_3);
             document.getElementById('piechart').innerHTML = "";
-            bombing_counts = [10, 10, 10, 10];
+            document.getElementById('barchart1').innerHTML = "";
+            document.getElementById('barchart2').innerHTML = "";
+            cumulative_tons[0] += total_tons[0][current_day-1];
+            cumulative_tons[1] += total_tons[1][current_day-1];
+            cumulative_tons[2] += total_tons[2][current_day-1];
+            //alert(cumulative_tons);
+            bombing_counts = [0, 0, 0, 0];
             stats_done = false;
 
             layer_Axis_GermanyBombing_1944_1 = new L.geoJson(json_Axis_GermanyBombing_1944_1, {
@@ -831,19 +949,28 @@
             });
             bounds_group.addLayer(layer_Allied_Bombing_JulySheet2_3);
             map.addLayer(layer_Allied_Bombing_JulySheet2_3);
-            //google.charts.load('current', {'packages':['corechart']});
-            //google.charts.setOnLoadCallback(drawChart);
-            if (animation_status == true){
+            if (current_day < 31){
+
+            if (animation_status){
                 setTimeout(updateTime, 500);
             }
+        }
             
-            drawChart();
+            drawPieChart();
+            drawBarChart1();
+            drawBarChart2();
         }
         
         document.getElementById("1").onclick = function(){pause()}
         document.getElementById("2").onclick = function(){pause()}
         document.getElementById("3").onclick = function(){reset()}
         document.getElementById("4").onclick = function(){mode_switch()}
+
+        document.getElementById("check1").checked = true;
+        document.getElementById("check2").checked = true;
+        document.getElementById("check3").checked = true;
+        document.getElementById("check4").checked = true;
+
 
         stats_done = true;
         
@@ -870,16 +997,39 @@
         }
         </script>
 
-        <div id="piechart" style="width: 900px; height: 500px;"></div>
+        <div id="piechart" style="width: 375px; height: 250px; "></div>
+        <div id="barchart1" style="width: 300px; height: 250px;"></div>
+        <div id="barchart2" style="width: 300px; height: 250px;"></div>
         <style>
         	#piechart {
               position: absolute;
-              top: 330px;
-              left: -100px;
-              width: 240px;
+              top: 400px;
+              left: -50px;
+              width: 200px;
               opacity: 0.8;
               z-index: 10;
         	}
+
+            #barchart1 {
+              position: absolute;
+              top: 600px;
+              left: -50px;
+              width: 100px;
+              height: 200px;
+              opacity: 0.8;
+              z-index: 10;
+            }
+
+            #barchart2 {
+              position: absolute;
+              top: 950px;
+              left: -50px;
+              width: 100px;
+              height: 200px;
+              opacity: 0.8;
+              z-index: 10;
+            }
+
             .main_check {
               background-color:lightblue;
               width: 150px;
